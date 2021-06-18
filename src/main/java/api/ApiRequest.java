@@ -11,10 +11,10 @@ import io.restassured.http.Headers;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ApiRequest {
+public class ApiRequest<T>{
     private String baseUri;
     private String endpoint;
-    private String body;
+    private T body;
     private String token;
     private Enum<RequestMethod> method;
     private Headers headers;
@@ -42,11 +42,11 @@ public class ApiRequest {
         this.endpoint = endpoint;
     }
 
-    public String getBody() {
+    public T getBody() {
         return body;
     }
 
-    public void setBody(String body) {
+    public void setBody(T body) {
         this.body = body;
     }
 

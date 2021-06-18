@@ -7,12 +7,8 @@
  */
 package api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import io.restassured.response.Response;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiResponse {

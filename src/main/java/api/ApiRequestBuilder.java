@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-public class ApiRequestBuilder {
+@SuppressWarnings("unchecked")
+public class ApiRequestBuilder<T> {
 
     private ApiRequest apiRequest = new ApiRequest();
     private List<Header> headers;
@@ -38,7 +38,7 @@ public class ApiRequestBuilder {
         return this;
     }
 
-    public ApiRequestBuilder setBody(String body) {
+    public ApiRequestBuilder setBody(T body) {
         apiRequest.setBody(body);
         return this;
     }

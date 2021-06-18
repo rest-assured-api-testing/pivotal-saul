@@ -13,6 +13,8 @@ public class Endpoints {
     public static final String GET_ACCOUNT = "/accounts/{account_id}";
     public static final String GET_PROJECTS = "/projects";
     public static final String GET_PROJECT = "/projects/{project_id}";
+    public static final String CREATE_PROJECT = "/projects";
+    public static final String DELETE_PROJECT = "/projects/{project_id}";
     public static final String GET_PROJECT_ITERATIONS = "/projects/{project_id}/iterations";
     public static final String GET_PROJECT_ITERATION = "/projects/{project_id}/iterations/{iteration_number}";
     public static final String UPDATE_PROJECT_ITERATION_OVERRIDES = "projects/{project_id}/iteration_overrides/{iteration_number}";

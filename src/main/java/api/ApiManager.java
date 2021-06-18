@@ -16,20 +16,33 @@ import static io.restassured.RestAssured.given;
 public class ApiManager {
 
     private static RequestSpecification buildRequest(ApiRequest apiRequest)
-    {
-        return given().headers(apiRequest.getHeaders())
+    {   if (apiRequest.getBody() != null) {
+        return given()
+                .headers(apiRequest.getHeaders())
                 .queryParams(apiRequest.getQueryParams())
+                .headers("X-TrackerToken","5f62ab12d0f6da95865c13157b80eed8")
                 .pathParams(apiRequest.getPathParams())
                 .baseUri(apiRequest.getBaseUri())
                 .contentType(ContentType.JSON)
-                .auth().oauth2(apiRequest.getToken())
+                //.auth().oauth2(apiRequest.getToken())
+                .body(apiRequest.getBody())
                 .log().all();
+        } else {
+            return given().headers(apiRequest.getHeaders())
+                    .queryParams(apiRequest.getQueryParams())
+                    .headers("X-TrackerToken","5f62ab12d0f6da95865c13157b80eed8")
+                    .pathParams(apiRequest.getPathParams())
+                    .baseUri(apiRequest.getBaseUri())
+                    .contentType(ContentType.JSON)
+                    //.auth().oauth2(apiRequest.getToken())
+                    .log().all();
     }
-    public static Response execute(ApiRequest apiRequest){
+    }
+    public static ApiResponse execute(ApiRequest apiRequest){
         Response response = buildRequest(apiRequest)
                 .request(apiRequest.getMethod().name()
                         ,apiRequest.getEndpoint());
 
-        return response;
+        return new ApiResponse(response);
     }
 }

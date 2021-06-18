@@ -2,7 +2,46 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
+    "account_id": {
+      "type": "integer"
+    },
+    "atom_enabled": {
+      "type": "boolean"
+    },
+    "automatic_planning": {
+      "type": "boolean"
+    },
+    "bugs_and_chores_are_estimatable": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "current_iteration_number": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "enable_following": {
+      "type": "boolean"
+    },
+    "enable_incoming_emails": {
+      "type": "boolean"
+    },
+    "enable_tasks": {
+      "type": "boolean"
+    },
+    "has_google_domain": {
+      "type": "boolean"
+    },
     "id": {
+      "type": "integer"
+    },
+    "initial_velocity": {
+      "type": "integer"
+    },
+    "iteration_length": {
       "type": "integer"
     },
     "kind": {
@@ -11,14 +50,8 @@
     "name": {
       "type": "string"
     },
-    "version": {
+    "number_of_done_iterations_to_show": {
       "type": "integer"
-    },
-    "iteration_length": {
-      "type": "integer"
-    },
-    "week_start_day": {
-      "type": "string"
     },
     "point_scale": {
       "type": "string"
@@ -26,14 +59,20 @@
     "point_scale_is_custom": {
       "type": "boolean"
     },
-    "bugs_and_chores_are_estimatable": {
+    "profile_content": {
+      "type": "string"
+    },
+    "project_type": {
+      "type": "string"
+    },
+    "public": {
       "type": "boolean"
     },
-    "automatic_planning": {
-      "type": "boolean"
+    "start_date": {
+      "type": "string"
     },
-    "enable_tasks": {
-      "type": "boolean"
+    "start_time": {
+      "type": "string"
     },
     "time_zone": {
       "type": "object",
@@ -54,75 +93,48 @@
         "offset"
       ]
     },
-    "velocity_averaged_over": {
-      "type": "integer"
-    },
-    "number_of_done_iterations_to_show": {
-      "type": "integer"
-    },
-    "has_google_domain": {
-      "type": "boolean"
-    },
-    "enable_incoming_emails": {
-      "type": "boolean"
-    },
-    "initial_velocity": {
-      "type": "integer"
-    },
-    "public": {
-      "type": "boolean"
-    },
-    "atom_enabled": {
-      "type": "boolean"
-    },
-    "project_type": {
-      "type": "string"
-    },
-    "start_time": {
-      "type": "string"
-    },
-    "created_at": {
-      "type": "string"
-    },
     "updated_at": {
       "type": "string"
     },
-    "account_id": {
+    "velocity_averaged_over": {
       "type": "integer"
     },
-    "current_iteration_number": {
+    "version": {
       "type": "integer"
     },
-    "enable_following": {
-      "type": "boolean"
+    "week_start_day": {
+      "type": "string"
     }
   },
   "required": [
+    "account_id",
+    "atom_enabled",
+    "automatic_planning",
+    "bugs_and_chores_are_estimatable",
+    "created_at",
+    "current_iteration_number",
+    "description",
+    "enable_following",
+    "enable_incoming_emails",
+    "enable_tasks",
+    "has_google_domain",
     "id",
+    "initial_velocity",
+    "iteration_length",
     "kind",
     "name",
-    "version",
-    "iteration_length",
-    "week_start_day",
+    "number_of_done_iterations_to_show",
     "point_scale",
     "point_scale_is_custom",
-    "bugs_and_chores_are_estimatable",
-    "automatic_planning",
-    "enable_tasks",
-    "time_zone",
-    "velocity_averaged_over",
-    "number_of_done_iterations_to_show",
-    "has_google_domain",
-    "enable_incoming_emails",
-    "initial_velocity",
-    "public",
-    "atom_enabled",
+    "profile_content",
     "project_type",
+    "public",
+    "start_date",
     "start_time",
-    "created_at",
+    "time_zone",
     "updated_at",
-    "account_id",
-    "current_iteration_number",
-    "enable_following"
+    "velocity_averaged_over",
+    "version",
+    "week_start_day"
   ]
 }
