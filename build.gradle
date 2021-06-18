@@ -10,14 +10,14 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.6.0'
+    implementation 'org.testng:testng:7.4.0'
     implementation 'io.rest-assured:rest-assured:4.4.0'
     implementation 'io.rest-assured:json-schema-validator:4.4.0'
     implementation 'io.rest-assured:json-path:4.4.0'
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '6.10.4'
+    implementation group: 'io.cucumber', name: 'cucumber-testng', version: '6.10.4'
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG()
 }
