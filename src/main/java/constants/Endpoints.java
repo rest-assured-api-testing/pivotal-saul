@@ -24,4 +24,5 @@ public class Endpoints {
     public static final String CREATE_PROJECT_LABEL = "/projects/{project_id}/labels";
     public static final String GET_PROJECT_STORIES = "/projects/{project_id}/stories";
     public static final String CREATE_STORY = "/projects/{project_id}/stories";
+    public static final String DELETE_STORY = "/projects/{project_id}/stories/{story_id}";
 }

@@ -7,123 +7,214 @@
  */
 package entities;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "kind",
-        "id",
         "created_at",
-        "updated_at",
-        "story_type",
-        "name",
         "current_state",
-        "requested_by_id",
-        "url",
-        "project_id",
+        "description",
+        "estimate",
+        "id",
+        "kind",
+        "labels",
+        "name",
         "owner_ids",
-        "labels"
+        "project_id",
+        "requested_by_id",
+        "story_type",
+        "updated_at",
+        "url"
 })
 public class Story {
-    private String kind;
-    private String id;
-    private String created_at;
-    private String updated_at;
-    private String story_type;
-    private String name;
-    private String current_state;
-    private int requested_by_id;
-    private String url;
-    private List<String> owner_ids;
-    private List<String> labels;
 
+    @JsonProperty("created_at")
+    private String createdAt;
+    @JsonProperty("current_state")
+    private String currentState;
+    @JsonProperty("description")
+    private String description;
+    @JsonProperty("estimate")
+    private Integer estimate;
+    @JsonProperty("id")
+    private Integer id;
+    @JsonProperty("kind")
+    private String kind;
+    @JsonProperty("labels")
+    private List<Object> labels = null;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("owner_ids")
+    private List<Object> ownerIds = null;
+    @JsonProperty("project_id")
+    private Integer projectId;
+    @JsonProperty("requested_by_id")
+    private Integer requestedById;
+    @JsonProperty("story_type")
+    private String storyType;
+    @JsonProperty("updated_at")
+    private String updatedAt;
+    @JsonProperty("url")
+    private String url;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    @JsonProperty("created_at")
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    @JsonProperty("created_at")
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @JsonProperty("current_state")
+    public String getCurrentState() {
+        return currentState;
+    }
+
+    @JsonProperty("current_state")
+    public void setCurrentState(String currentState) {
+        this.currentState = currentState;
+    }
+
+    @JsonProperty("description")
+    public String getDescription() {
+        return description;
+    }
+
+    @JsonProperty("description")
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @JsonProperty("estimate")
+    public Integer getEstimate() {
+        return estimate;
+    }
+
+    @JsonProperty("estimate")
+    public void setEstimate(Integer estimate) {
+        this.estimate = estimate;
+    }
+
+    @JsonProperty("id")
+    public Integer getId() {
+        return id;
+    }
+
+    @JsonProperty("id")
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @JsonProperty("kind")
     public String getKind() {
         return kind;
     }
 
+    @JsonProperty("kind")
     public void setKind(String kind) {
         this.kind = kind;
     }
 
-    public String getId() {
-        return id;
+    @JsonProperty("labels")
+    public List<Object> getLabels() {
+        return labels;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    @JsonProperty("labels")
+    public void setLabels(List<Object> labels) {
+        this.labels = labels;
     }
 
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
-    }
-
-    public String getUpdated_at() {
-        return updated_at;
-    }
-
-    public void setUpdated_at(String updated_at) {
-        this.updated_at = updated_at;
-    }
-
-    public String getStory_type() {
-        return story_type;
-    }
-
-    public void setStory_type(String story_type) {
-        this.story_type = story_type;
-    }
-
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
 
+    @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getCurrent_state() {
-        return current_state;
+    @JsonProperty("owner_ids")
+    public List<Object> getOwnerIds() {
+        return ownerIds;
     }
 
-    public void setCurrent_state(String current_state) {
-        this.current_state = current_state;
+    @JsonProperty("owner_ids")
+    public void setOwnerIds(List<Object> ownerIds) {
+        this.ownerIds = ownerIds;
     }
 
-    public int getRequested_by_id() {
-        return requested_by_id;
+    @JsonProperty("project_id")
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setRequested_by_id(int requested_by_id) {
-        this.requested_by_id = requested_by_id;
+    @JsonProperty("project_id")
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
+    @JsonProperty("requested_by_id")
+    public Integer getRequestedById() {
+        return requestedById;
+    }
+
+    @JsonProperty("requested_by_id")
+    public void setRequestedById(Integer requestedById) {
+        this.requestedById = requestedById;
+    }
+
+    @JsonProperty("story_type")
+    public String getStoryType() {
+        return storyType;
+    }
+
+    @JsonProperty("story_type")
+    public void setStoryType(String storyType) {
+        this.storyType = storyType;
+    }
+
+    @JsonProperty("updated_at")
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    @JsonProperty("updated_at")
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @JsonProperty("url")
     public String getUrl() {
         return url;
     }
 
+    @JsonProperty("url")
     public void setUrl(String url) {
         this.url = url;
     }
 
-    public List<String> getOwner_ids() {
-        return owner_ids;
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
     }
 
-    public void setOwner_ids(List<String> owner_ids) {
-        this.owner_ids = owner_ids;
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
     }
 
-    public List<String> getLabels() {
-        return labels;
-    }
-
-    public void setLabels(List<String> labels) {
-        this.labels = labels;
-    }
 }

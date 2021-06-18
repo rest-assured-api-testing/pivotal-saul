@@ -5,12 +5,12 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
-
 package rest.pivotal.org.steps.Projects;
 
 import api.*;
 import constants.Endpoints;
 import entities.Project;
+import entities.Story;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -23,32 +23,50 @@ import org.testng.annotations.BeforeMethod;
 import utils.PropertiesReader;
 import java.io.IOException;
 
-public class ProjectSteps {
+public class StoriesSteps {
     private String token;
     private String base_uri;
     private ApiRequestBuilder apiRequestBuilder = new ApiRequestBuilder();
     private ApiResponse apiResponse;
-    private Project project = new Project();
-    private int created_project_id;
+    private Story story = new Story();
+    private final int project_id = 2504532;
+    private int created_story_id;
 
     @Before
     public void readProperties() throws IOException {
         token = PropertiesReader.readFileProperty("env.conf", "token");
         base_uri = PropertiesReader.readFileProperty("env.conf", "base_uri");
     }
-    @BeforeMethod(groups = "delete project")
-    public void createProjectToDelete() {
-        Project projectTemp = new Project();
-        projectTemp.setName("Task List");
+
+    @BeforeMethod(groups = "delete story")
+    public void createStoryToDelete() {
+        Story storyTemp = new Story();
+        storyTemp.setName("Task List");
         ApiRequest apiRequest = new ApiRequestBuilder()
                 .setBaseUri(base_uri)
                 .setToken(token)
-                .setEndpoint(Endpoints.CREATE_PROJECT)
+                .setEndpoint(Endpoints.CREATE_STORY)
                 .setMethod(RequestMethod.POST)
-                .setBody(projectTemp)
+                .addQueryParam("project_id", String.valueOf(project_id))
+                .setBody(storyTemp)
                 .build();
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
-        this.project = apiResponse.getBody(Project.class);
+        this.story = apiResponse.getBody(Story.class);
+    }
+    @BeforeMethod(onlyForGroups = "createStory")
+    public void createProject() {
+        Story story = new Story();
+        story.setName("storytest");
+        ApiRequest apiRequest = new ApiRequestBuilder()
+                .setToken(token)
+                .setBaseUri(base_uri)
+                .setEndpoint(Endpoints.CREATE_PROJECT)
+                .setMethod(RequestMethod.POST)
+                .addQueryParam("project_id", String.valueOf(project_id))
+                .setBody(story)
+                .build();
+        ApiResponse apiResponse = ApiManager.execute(apiRequest);
+        this.story = apiResponse.getBody(Story.class);
     }
     @Given("I build {string} request")
     public void iBuildRequest(String method) {
@@ -56,45 +74,47 @@ public class ProjectSteps {
                 .setToken(token)
                 .setMethod(RequestMethod.valueOf(method));
     }
-    @And("I set project {string} name")
+
+    @And("I set story {string} name")
     public void iSetProjectName(String name) {
-        project.setName(name);
+        story.setName(name);
     }
-    @And("I set project {string} description")
+
+    @And("I set story {string} description")
     public void iSetProjectDescription(String description) {
-        project.setDescription(description);
+        story.setDescription(description);
     }
-    @And("I set project {string} type")
+
+    @And("I set story {string} type")
     public void iSetProjectType(String type) {
-        project.setProjectType(type);
+        story.setStoryType(type);
     }
-    @And("I set {string} enable")
-    public void iSetIfItEnableTasks(String enables_tasks) {
-        boolean enables = enables_tasks.equals("true");
-        project.setEnableTasks(enables);
-    }
+
     @When("I execute {string} request")
     public void iExecuteRequest(String endpoint) {
-        apiRequestBuilder.setBody(project);
+        apiRequestBuilder.setBody(story);
         ApiRequest apiRequest = apiRequestBuilder
                 .setEndpoint(endpoint)
                 .build();
         apiResponse = ApiManager.execute(apiRequest);
     }
+
     @Then("the response status code should be {string}")
     public void theResponseStatusCodeShouldBe(String statusCode) {
-        created_project_id = apiResponse.getBody(Project.class).getId();
+        created_story_id = apiResponse.getBody(Project.class).getId();
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_OK);
         apiResponse.getResponse().then().log().body();
     }
+
     @After
     public void deleteCreatedProject() {
+        System.out.println(created_story_id);
         ApiRequest apiRequest = new ApiRequestBuilder()
                 .setBaseUri(base_uri)
                 .setToken(token)
                 .setEndpoint(Endpoints.DELETE_PROJECT)
                 .setMethod(RequestMethod.DELETE)
-                .addPathParam("project_id", String.valueOf(created_project_id))
+                .addPathParam("story_id", String.valueOf(created_story_id))
                 .build();
         ApiManager.execute(apiRequest);
     }
