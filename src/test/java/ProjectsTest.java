@@ -29,6 +29,7 @@ public class ProjectsTest {
         token = PropertiesReader.readFileProperty("env.conf", "token");
         base_uri = PropertiesReader.readFileProperty("env.conf", "base_uri");
     }
+
     @BeforeMethod(onlyForGroups = "deleteProject")
     public void createProjectToDelete() {
         Project project = new Project();

@@ -11,8 +11,6 @@ import constants.Endpoints;
 import entities.Account;
 import entities.Project;
 import entities.Story;
-import io.cucumber.java.Before;
-import io.cucumber.java.bs.A;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -45,7 +43,6 @@ public class StoriesTest {
                 .setBaseUri(base_uri)
                 .setEndpoint(Endpoints.GET_USER_INFO)
                 .setMethod(RequestMethod.GET)
-                .setBody(story)
                 .build();
         ApiResponse apiResponse = ApiManager.execute(apiRequest);
         user_id = ApiManager.execute(apiRequest).getBody(Account.class).getId();
@@ -63,8 +60,8 @@ public class StoriesTest {
                 .setBody(project)
                 .build();
         project_id = ApiManager.execute(apiRequest).getBody(Project.class).getId();
-        System.out.println("PROJCET_ID\n\n\n" + project_id);
     }
+
     @BeforeMethod(onlyForGroups = "deleteStory")
     public void createStory() {
         Story story = new Story();
@@ -181,16 +178,4 @@ public class StoriesTest {
                 .build();
         ApiManager.execute(apiRequest);
     }
-//    private void deleteCreatedStories() {
-//        for (int id:createdStoriesIdList) {
-//            ApiRequest apiRequest = new ApiRequestBuilder()
-//                    .setToken(token)
-//                    .setBaseUri(base_uri)
-//                    .setEndpoint(Endpoints.DELETE_STORY)
-//                    .setMethod(RequestMethod.DELETE)
-//                    .addPathParam("story_id", String.valueOf(id))
-//                    .build();
-//            ApiManager.execute(apiRequest);
-//        }
-//    }
 }
