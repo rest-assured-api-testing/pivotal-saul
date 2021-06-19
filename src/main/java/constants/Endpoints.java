@@ -9,6 +9,7 @@ package constants;
 
 public class Endpoints {
 
+    public static final String GET_USER_INFO = "/me";
     public static final String GET_ACCOUNTS = "/account_summaries";
     public static final String GET_ACCOUNT = "/accounts/{account_id}";
     public static final String GET_PROJECTS = "/projects";
